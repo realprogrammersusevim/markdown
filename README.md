@@ -2,12 +2,14 @@
 
 The all-in-one Markdown tool you didn't know you wanted:tm:
 
-## Goals
+## Why?
 
 Over the year I've built many little scripts to try to imperfectly solve little
 annoyances I've had with my Markdown files. Instead of little ad-hoc and good
-enough Python regex's I decided to build the one tool to rule them all for
-handling large amounts of Markdown files.
+enough Python regex's I've decided to build the one tool to rule them all for
+handling Markdown files.
+
+## Goals
 
 - Tree-sitter based parsing for _blazingly fast_ speed and accuracy
 - Automatically rename links when renaming files
