@@ -1,4 +1,6 @@
-use clap::{Arg, Command};
+use clap::{Parser, Subcommand};
+mod convention;
+mod file_management;
 // use markdown::MarkdownParser;
 //
 // extern "C" {
@@ -14,34 +16,38 @@ use clap::{Arg, Command};
 //     unsafe { tree_sitter_markdown_inline() }
 // }
 
+#[derive(Parser)]
+#[command(name = "markdown")]
+#[command(about = "A command line tool for parsing and converting markdown files.")]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    /// Change file naming conventions
+    #[command(arg_required_else_help = true)]
+    Convention {
+        #[arg(short, long)]
+        from: String,
+        #[arg(short, long)]
+        to: String,
+        #[arg(short, long, default_value = ".")]
+        path: String,
+    },
+}
+
 fn main() {
-    cli()
+    let args = Cli::parse();
+
+    match args.command {
+        Commands::Convention { from, to, path } => {
+            convention::convention(from, to, path);
+        }
+    }
     // let mut parser = MarkdownParser::default();
     // let input = String::from("# Big header\n\nThis is another line\n\n- Bullet point");
     // let tree = parser.parse(&input.as_bytes(), None).unwrap();
     // println!("{:?}", tree)
-}
-
-fn cli() {
-    Command::new("markdown")
-        .author("Jonathan Milligan")
-        .version("άλφα")
-        .subcommand(
-            Command::new("convention")
-                .about("Change the file naming convention")
-                .arg(
-                    Arg::new("from")
-                        .short('f')
-                        .value_parser(["space", "camelCase", "snake_case"])
-                        .default_value("space"),
-                )
-                .about("File naming convention that will be changed from")
-                .arg(Arg::new("to").short('t').required(true).value_parser([
-                    "space",
-                    "camelCase",
-                    "snake_case",
-                ]))
-                .about("File naming convention that will be changed to"),
-        )
-        .get_matches();
 }
