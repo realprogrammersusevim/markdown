@@ -36,24 +36,25 @@ pub fn inline_language() -> Language {
 }
 
 pub const HIGHLIGHT_QUERY_BLOCK: &str =
-    include_str!("../../tree-sitter-markdown/queries/highlights.scm");
+    include_str!("../tree-sitter-markdown/tree-sitter-markdown/queries/highlights.scm");
 pub const INJECTION_QUERY_BLOCK: &str =
-    include_str!("../../tree-sitter-markdown/queries/injections.scm");
+    include_str!("../tree-sitter-markdown/tree-sitter-markdown/queries/injections.scm");
 pub const HIGHLIGHT_QUERY_INLINE: &str =
-    include_str!("../../tree-sitter-markdown-inline/queries/highlights.scm");
+    include_str!("../tree-sitter-markdown/tree-sitter-markdown-inline/queries/highlights.scm");
 pub const INJECTION_QUERY_INLINE: &str =
-    include_str!("../../tree-sitter-markdown-inline/queries/injections.scm");
+    include_str!("../tree-sitter-markdown/tree-sitter-markdown-inline/queries/injections.scm");
 
 /// The content of the [`node-types.json`][] file for the block grammar.
 ///
 /// [`node-types.json`]: https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types
-pub const NODE_TYPES_BLOCK: &str = include_str!("../../tree-sitter-markdown/src/node-types.json");
+pub const NODE_TYPES_BLOCK: &str =
+    include_str!("../tree-sitter-markdown/tree-sitter-markdown/src/node-types.json");
 
 /// The content of the [`node-types.json`][] file for the inline grammar.
 ///
 /// [`node-types.json`]: https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types
 pub const NODE_TYPES_INLINE: &str =
-    include_str!("../../tree-sitter-markdown-inline/src/node-types.json");
+    include_str!("../tree-sitter-markdown/tree-sitter-markdown-inline/src/node-types.json");
 
 /// A parser that produces [`MarkdownTree`]s.
 ///
