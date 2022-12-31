@@ -5,9 +5,10 @@ pub fn convention(from: String, to: String, path: String) -> () {
     // TODO: Make sure I'm only renaming the file name, not the whole path
     // TODO: Make this whole thing safer with better error managment, maybe look into Anyhow for
     // error handling
-    let files = file_management::get_files(path);
+    let files = file_management::get_files(path, true);
     for file in files {
-        let split_file = split_filename(&file, &from);
+        let file_name = file_management::file_name_from_path(&file);
+        let split_file = split_filename(file_name, &from);
         let new_file = join_filename(split_file, &to);
         file_management::rename_file(file, new_file).unwrap();
     }
